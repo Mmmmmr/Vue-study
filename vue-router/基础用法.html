@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+        <a href="#/login">注册界面</a>
+        <a href="#/register">登录界面</a>
+    </div>
+
+
+    <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+    <script>
+
+    var login = { template: '<div>注册</div>' }
+    var register = { template: '<div>登录</div>' }
+    var router = new VueRouter({
+        routes: [
+            {path: '/login', component: login},
+            {path: '/register', component: register}
+        ]
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods:{},
+        router: router
+    })
+    </script>
+</body>
+</html>
