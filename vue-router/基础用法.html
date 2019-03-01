@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    .router-link-active, 
+    .myactive{
+        font-size: 80px;
+        color: red;
+        background-color: green;
+    } </style>
 </head>
 <body>
     <div id="app">
         <router-view></router-view>
-        <a href="#/login">注册界面</a>
-        <a href="#/register">登录界面</a>
+        <!-- 使用router-link -->
+        <router-link tag='div' to='/register?id=10'><span>注册</span></router-link>
+        <router-link to="/login?id=20&name=login">登陆</router-link>
+
+
+        <!-- 使用a链接 -->
+        <!-- <a href="#/login">注册界面</a>
+        <a href="#/register">登录界面</a> -->
     </div>
 
 
@@ -18,13 +31,20 @@
     <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
     <script>
 
-    var login = { template: '<div>注册</div>' }
-    var register = { template: '<div>登录</div>' }
+    var login = { 
+        template: '<div>登陆</div>', 
+        created: function(){
+            console.log(this.$route)
+        }
+    }
+    var register = { template: '<div>注册{{$route.query.id}}</div>' }
     var router = new VueRouter({
         routes: [
+            {path: '/', redirect: '/login'},
             {path: '/login', component: login},
             {path: '/register', component: register}
-        ]
+        ],
+        linkActiveClass: 'myactive'
     })
     var app = new Vue({
         el: '#app',
